@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Appointment - Meta Test Shop</title>
+<link rel="stylesheet" href="css/style.css">
+<script>
+fbq('track', 'PageView');
+</script>
+</head>
+<body>
+<button class="top-back" onclick="history.back()">&lt;</button>
+<h1>Book Appointment</h1>
+<button onclick="bookAppointment()">Book Now</button>
+
+<script>
+function bookAppointment() {
+  // Fire Meta Pixel CompleteRegistration event
+  fbq('track', 'CompleteRegistration', {content_name: 'Appointment Booking'});
+  alert('Appointment booked!');
+}
+</script>
+</body>
+</html>

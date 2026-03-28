@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout - Meta Test Shop</title>
+</head>
+<body>
+<h1>Checkout</h1>
+<ul id="cart-items"></ul>
+<button onclick="purchase()">Purchase</button>
+<script>
+const cartItems = JSON.parse(localStorage.getItem('cart') || '[]');
+const list = document.getElementById('cart-items');
+cartItems.forEach(item => {
+  const li = document.createElement('li');
+  li.textContent = item.name + ' - ' + item.price + ' MYR';
+  list.appendChild(li);
+});
+
+function purchase() {
+  const totalValue = cartItems.reduce((sum, item) => sum + item.price, 0);
+  fbq('track', 'Purchase', {value: totalValue, currency:'MYR'});
+  localStorage.removeItem('cart');
+  alert('Purchase completed!');
+  window.location.href = 'thankyou.html';
+}
+</script>
+</body>
+</html>
