@@ -5,10 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Product 1 - Meta Test Shop</title>
 <link rel="stylesheet" href="css/style.css">
-<script>
-fbq('track', 'ViewContent', {content_name: 'Product 1', content_category: 'Demo', value: 100, currency: 'MYR'});
-</script>
-  <!-- Meta Pixel Code -->
+<!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -21,10 +18,14 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '3821742341430033');
 fbq('track', 'PageView');
 </script>
+
+<!-- Custom Event AFTER Pixel is loaded -->
+<script>
+fbq('track', 'ViewContent', {content_name: 'Product 1', content_category: 'Demo', value: 100, currency: 'MYR'});
+</script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=3821742341430033&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Meta Pixel Code -->
 </head>
 <body>
 <button class="top-back" onclick="history.back()">&lt;</button>
