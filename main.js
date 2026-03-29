@@ -1,10 +1,28 @@
+// 1️⃣ Load Meta Pixel dynamically if not already loaded
+(function loadPixel() {
+  if (!window.fbq) {
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '3821742341430033'); // replace with your Pixel ID
+    fbq('track', 'PageView');
+  }
+})();
+
+// 2️⃣ Define addToCart globally
 window.addToCart = function(productName, price) {
-  // 1. Save product to cart
+  // Save product to cart
   let cart = JSON.parse(localStorage.getItem('cart') || '[]');
   cart.push({name: productName, price: price});
   localStorage.setItem('cart', JSON.stringify(cart));
 
-  // 2. Fire Meta Pixel AddToCart event with proper parameters
+  // Fire AddToCart Pixel event
   if (typeof fbq === 'function') {
     fbq('track', 'AddToCart', {
       content_ids: [productName],
@@ -17,10 +35,10 @@ window.addToCart = function(productName, price) {
     console.warn('Pixel not loaded yet.');
   }
 
-  // 3. Show confirmation
+  // Show confirmation
   alert(productName + ' added to cart!');
 
-  // 4. Redirect to checkout after short delay so Pixel fires
+  // Redirect to checkout after short delay
   setTimeout(() => {
     window.location.href = 'checkout.html';
   }, 200);
